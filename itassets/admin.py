@@ -1,0 +1,60 @@
+from django.contrib import admin
+
+# Register your models here.
+
+from itassets.models import *
+
+
+
+class hosts_format(admin.ModelAdmin):
+    list_display=["hostid","sn","hostname","brand","updatedate","statusid","regionid","envid","cpuid","memid"]
+admin.site.register(hosts,hosts_format)
+
+class cpus_format(admin.ModelAdmin):
+    list_display=["cpuid","cpu","number"]
+admin.site.register(cpus,cpus_format)
+
+class status_format(admin.ModelAdmin):
+    list_display=["statusid","status"]
+admin.site.register(status,status_format)
+
+
+class regions_format(admin.ModelAdmin):
+    list_display=["regionid","region"]
+admin.site.register(regions,regions_format)
+
+class envs_format(admin.ModelAdmin):
+    list_display=["envid","env"]
+admin.site.register(envs,envs_format)
+
+
+class memory_format(admin.ModelAdmin):
+    list_display=["memid","capacity"]
+admin.site.register(memory,memory_format)
+
+
+class net_format(admin.ModelAdmin):
+    list_display=["ipid","hostid","ip","nic","mac"]
+admin.site.register(net,net_format)
+
+class services_format(admin.ModelAdmin):
+    list_display=["serviceid","service"]
+admin.site.register(services,services_format)
+
+class engineer_format(admin.ModelAdmin):
+    list_display=["engineerid","name","phone","role","status"]
+admin.site.register(engineer,engineer_format)
+
+class service_engineer_format(admin.ModelAdmin):
+    list_display=["service_engineerid","serviceid","engineerid"]
+admin.site.register(service_engineer,service_engineer_format)
+
+class disks_format(admin.ModelAdmin):
+    list_display=["diskid","space","brand","model"]
+admin.site.register(disks,disks_format)
+
+class hostsdisks_format(admin.ModelAdmin):
+    list_display=["hostsdisksid","hostid","diskid"]
+admin.site.register(hostsdisks,hostsdisks_format)
+
+
