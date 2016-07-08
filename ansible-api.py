@@ -68,18 +68,19 @@ for hostname,result in  results['contacted'].items():
     #-------------------- 获取CPU信息并更新Mysql --------------------------------------------------
     cpus={
         'cpu_id':nextid('cpus','cpuid'),
-        'cpu_number':facts['ansible_processor_count'],
+        'vcpus':facts['ansible_processor_vcpus'],
+        #'vcps':facts['ansible_processor_count'],
         'cpu_name':facts['ansible_processor'][1]
         }
 
-    sql=exesql('select cpuid,cpu,number From itassets_cpus group by cpu,number;')
+    sql=exesql('select cpuid,cpuname,vcpus From itassets_cpus group by cpuname,vcpus;')
     for record in sql:
-        if cpus['cpu_name'] == record[1] and cpus['cpu_number'] == record[2]:
+        if cpus['cpu_name'] == record[1] and cpus['vcpus'] == record[2]:
             cpu_id=record[0]
         
     if 'cpu_id' not in locals().keys():
-        sql='insert into itassets_%s (cpuid,cpu,number) values (%d,"%s",%d);' \
-        % ('cpus',cpus['cpu_id'],cpus['cpu_name'],cpus['cpu_number'])
+        sql='insert into itassets_%s (cpuid,cpuname,vcpus) values (%d,"%s",%d);' \
+        % ('cpus',cpus['cpu_id'],cpus['cpu_name'],cpus['vcpus'])
         exesql(sql)
         cpu_id = cpus['cpu_id']
     #---------------------------------------------------------------------------------------------
