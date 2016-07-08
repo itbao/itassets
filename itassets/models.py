@@ -30,8 +30,8 @@ class envs(models.Model):
 
 class cpus(models.Model):
     cpuid=models.PositiveSmallIntegerField(primary_key=True)
-    cpu=models.CharField(max_length=50)
-    number=models.PositiveSmallIntegerField()
+    cpuname=models.CharField(max_length=50)
+    vcpus=models.PositiveSmallIntegerField()
     
 class memory(models.Model):
     memid=models.PositiveSmallIntegerField(primary_key=True)

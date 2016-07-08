@@ -11,7 +11,7 @@ class hosts_format(admin.ModelAdmin):
 admin.site.register(hosts,hosts_format)
 
 class cpus_format(admin.ModelAdmin):
-    list_display=["cpuid","cpu","number"]
+    list_display=["cpuid","cpuname","vcpus"]
 admin.site.register(cpus,cpus_format)
 
 class status_format(admin.ModelAdmin):
